@@ -4,8 +4,7 @@ include::include/attributes.adoc[]
 
 == Was wird geprüft?
 
-Die verwendete Markup-Sprache HTML muss korrekt eingesetzt werden.
-Dabei muss für jedes Element folgendes gewährleistet sein:
+Geprüft wird ob für jedes Element im HTML-Quellcode folgendes gewährleistet ist:
 
 * Sie besitzen vollständige Start- und Endtags
 * sie sind gemäß Spezifikation korrekt verschachtelt
@@ -15,8 +14,7 @@ Dabei muss für jedes Element folgendes gewährleistet sein:
 
 == Warum wird das geprüft?
 
-Eine saubere HTML-Syntax vereinfacht Browsern oder Screenreadern den Umgang
-mit der Seite.
+Parsing-Fehler können Browsern und Screenreadern den Umgang mit der Seite erschweren.
 
 == Wie wird geprüft?
 
@@ -41,9 +39,12 @@ Der Prüfschritt ist immer anwendbar.
 . Falls Fehler angezeigt werden (Error), also die Seite nicht validiert, mit dem
   http://www.bitvtest.de/bitvtest/das_testverfahren_im_detail/werkzeugliste.html#parsing[
   WCAG parsing only Bookmarklet] die Fehler filtern.
-. Prüfen, ob nach der Anwendung des Bookmarklets noch Fehler vorhanden sind.
-  Syntaktisch korrekt eingesetzte Custom-Attribute gelten dabei nicht als
-  Fehler.
+. Prüfen, ob nach der Anwendung des Bookmarklets keine Fehler mehr angezeigt werden.
+  Falls noch Fehler angezeigt werden, prüfen ob es sich jeweils um einen Verstoß gegen einer der folgenden vier Kriterien handelt:
+  * sie besitzen vollständige Start- und Endtags
+  * sie sind gemäß Spezifikation korrekt verschachtelt
+  * sie enthalten keine doppelten Attribute
+  * alle ihre IDs sind eindeutig, außer dort wo die Spezifikationen etwas anderes erlauben
 
 === 3. Hinweise
 
@@ -67,16 +68,11 @@ Der Prüfschritt ist immer anwendbar.
 
 ==== Erfüllt
 
-* Das Prüfergebnis des W3C-HTML-Validators ist nach Anwendung des WCAG
-  parsing only Bookmarklet positiv.
-  Falls noch Fehler (Errors) auftauchen, sind diese auf den semantisch
-  korrekten Einsatz von Custom-Attributen zurückzuführen.
+* Die Prüfung mit dem W3C-Validator und nach Anwendung des WCAG parsing only Bookmarklet zeigt keine Fehler gegen eine der vier genannten Kriterien auf.
 
 ==== Nicht erfüllt
 
-* Das Prüfergebnis des W3C-HTML-Validators ist auch nach Anwendung des WCAG
-  parsing only Bookmarklet negativ, es gibt Errors (und nicht nur wegen
-  Custom-Attributen).
+* Es ist mindestens ein Fehler im gerenderten Quellcode vorhanden, der gegen eine der vier Kriterien verstößt.
 
 == Einordnung des Prüfschritts
 
